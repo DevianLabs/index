@@ -1,0 +1,20 @@
+html, body {
+    height: 100%;
+    font-family: "Anaheim", Georgia, Serif;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #000;
+}
+
+.dvn-content{
+  font-size: 3em;
+  color: #fff;
+}
