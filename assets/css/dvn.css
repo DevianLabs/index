@@ -1,6 +1,7 @@
 html, body {
     height: 100%;
     font-family: "Anaheim", Georgia, Serif;
+    -webkit-font-smoothing: antialiased;
 }
 
 html {
@@ -14,7 +15,17 @@ body {
     background-color: #000;
 }
 
-.dvn-content{
+.dvn-content {
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+}
+
+#dvn-text span:first-of-type {
   font-size: 3em;
   color: #fff;
+    background-image: -webkit-linear-gradient(92deg,#fff,#fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 5s infinite linear;
 }

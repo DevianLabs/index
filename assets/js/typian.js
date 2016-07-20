@@ -14,13 +14,13 @@
 
 	//constructor
 	function Plugin(el, opts) {
-		
+
 		this._defaults = $.fn[plugin].defaults;
 		this.opts = $.extend(true, {}, this._defaults, opts);
-		
+
 		this.timer = 0;
 		this.counter = 0;
-		
+
 		this.el = el;
 		this.$el = $(this.el);
 
@@ -54,37 +54,38 @@
 		//
 		_setText: function() {
 		  var that = this;
-		  
+
 			if(!$.isArray(that.opts.text)) {
 				var texts = [];
 				texts.push(that.opts.text);
 				that.opts.text = texts;
 			}
-			
+
 			that.strings = that.opts.text.length;
 		},
 
 		//
 		_animate: function() {
 			var that = this;
-			
+
 			if(that.strings > 0) {
-				
+
 				if(that.counter > 0) {
 					that._setBreak();
 				}
-				
+
 				that.text = that.opts.text[0];
 				that.textArray = that.text.split('');
 				that.textPart = '';
 				that.counter++;
-				
+
 				that.$cursor.before('<span class="' + namespacePlugin + '-active"></span>');
-			
+
 				that._animatePart();
 			}
-
-			that._callback('onTyped', [that]);
+			else {
+				that._callback('onTyped', [that]);
+			}
 		},
 
 		//
@@ -97,9 +98,9 @@
 		//
 		_animatePart: function() {
 			var that = this;
-			
+
 			var $typian = that.$el.find('.'+ namespacePlugin + '-active');
-			
+
 			if(that.textArray.length > 0) {
 				that.textPart += that.textArray.shift();
 				$typian.html(that.textPart);
@@ -116,7 +117,7 @@
 				that._animatePart();
 			}, that.opts.delay);
 		},
-		
+
 		//
 		_callback: function (func, args) {
 				var funcion = this.opts[func];
@@ -142,9 +143,9 @@
 		else {
 			if (typeof options === 'string' && options[0] !== '_' && options !== 'init') {
 				this.each(function () {
-					
+
 					instance = $.data(this, namespacePlugin);
-					
+
 					if (instance instanceof Plugin) {
 						if (typeof instance[options] === 'function') {
 							returns = instance[options].apply(instance, Array.prototype.slice.call(arguments, 1));
@@ -157,7 +158,7 @@
 						throw 'error: null object';
 					}
 				});
-				
+
 				return returns !== undefined ? returns : this;
 			}
 			else {
@@ -183,5 +184,5 @@
 
 		onTyped: function() { }
 	};
-	
+
 }));
